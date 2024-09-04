@@ -3,7 +3,7 @@ import styles from 'src/styles/Home.module.css';
 import { Header } from 'src/components/Header';
 import { Main } from 'src/components/Main';
 import { Footer } from 'src/components/Footer';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 // const handleClick = (e, foo) => {
 //   console.log(e.target.href);
@@ -19,7 +19,17 @@ export default function Home() {
     e.preventDefault();
     alert(foo);
   }, []);
-  
+
+  useEffect(() => {
+    console.log("マウント時");
+    document.body.style.backgroundColor = "lightblue";
+
+    return () => {
+      console.log("アンマウント時");
+      document.body.style.backgroundColor = "";
+    }
+  }, [])
+
   return (
     <div className={styles.container}>
       <Head>
