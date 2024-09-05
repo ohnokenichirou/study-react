@@ -5,19 +5,14 @@ import { Main } from 'src/components/Main';
 import { Footer } from 'src/components/Footer';
 import { useCallback, useEffect, useState } from 'react';
 
-// const handleClick = (e, foo) => {
-//   console.log(e.target.href);
-//   e.preventDefault();
-//   alert(foo);
-// }
-
 export default function Home() {
   const [count, setCount] = useState(1);
 
-  const handleClick = (e) => {
-    setCount((count) => count + 1);
-    setCount((count) => count + 1);
-  };
+  const handleClick = useCallback(() => {
+    if (count < 10) {
+      setCount((count) => count + 1);
+    }
+  }, [count]);
 
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
@@ -25,7 +20,7 @@ export default function Home() {
     return () => {
       document.body.style.backgroundColor = "";
     }
-  }, [])
+  }, []);
 
   return (
     <div className={styles.container}>
