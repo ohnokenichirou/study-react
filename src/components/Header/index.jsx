@@ -1,15 +1,21 @@
-import Link from 'next/link'
-import classes from 'src/components/Header/Header.module.css'
+import Link from "next/link";
+import classes from "src/components/Header/Header.module.css";
 
-export function Header() {
+const NAV_ITEMS = [
+  { href: "/", lavel: "Index" },
+  { href: "/about", lavel: "About" },
+];
+
+export const Header = () => {
   return (
     <header className={classes.header}>
-      <Link href="/" passHref legacyBehavior>
-        <a className={classes.anchor}>Index</a>
-      </Link>
-      <Link href="/about" passHref legacyBehavior>
-        <a className={classes.anchor}>About</a>
-      </Link>
+      {NAV_ITEMS.map((item) => {
+        return (
+          <Link key={item.href} href={item.href} passHref legacyBehavior>
+            <a className={classes.anchor}>{item.lavel}</a>
+          </Link>
+        );
+      })}
     </header>
   );
-}
+};
